@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision Matrix</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    input {
+      width: 60px;
+      text-align: center;
+    }
+    .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Decision Matrix</h1>
+  <table id="decision-matrix">
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Practicality (1-10)</th>
+        <th>Enjoyment (1-10)</th>
+        <th>Individual Growth (1-10)</th>
+        <th>Alignment with Goals (1-10)</th>
+        <th>Total Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" placeholder="Option 1"></td>
+        <td><input type="number" min="1" max="10" class="score" oninput="calculateTotal(this)"></td>
+        <td><input type="number" min="1" max="10" class="score" oninput="calculateTotal(this)"></td>
+        <td><input type="number" min="1" max="10" class="score" oninput="calculateTotal(this)"></td>
+        <td><input type="number" min="1" max="10" class="score" oninput="calculateTotal(this)"></td>
+        <td><span class="total">0</span></td>
+      </tr>
+      <tr>
+        <td><input type="text" placeholder="Option 2"></td>
+        <td><input type="number" min="1" max="10" class="score" oninput="calculateTotal(this)"></td>
+        <td><input type="number" min="1" max="10" class="score" oninput="calculateTotal(this)"></td>
+        <td><input type="number" min="1" max="10" class="score" oninput="calculateTotal(this)"></td>
+        <td><input type="number" min="1" max="10" class="score" oninput="calculateTotal(this)"></td>
+        <td><span class="total">0</span></td>
+      </tr>
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+  <button class="btn" onclick="addRow()">Add Option</button>
+  <script>
+    function calculateTotal(input) {
+      const row = input.closest('tr');
+      const scores = row.querySelectorAll('.score');
+      let total = 0;
+      scores.forEach(score => {
+        total += parseInt(score.value) || 0;
+      });
+      row.querySelector('.total').textContent = total;
+    }
+
+    function addRow() {
+      const table = document.getElementById('decision-matrix').getElementsByTagName('tbody')[0];
+      const newRow = table.rows[0].cloneNode(true);
+      newRow.querySelectorAll('input').forEach(input => input.value = '');
+      newRow.querySelector('.total').textContent = '0';
+      table.appendChild(newRow);
+    }
+  </script>
+</body>
+</html>
