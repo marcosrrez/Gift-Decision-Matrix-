@@ -1,56 +1,90 @@
+---
+layout: default
+title: Decision Matrix
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Decision Matrix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 20px;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+    }
+    p {
+      text-align: center;
+      font-size: 1rem;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
+      margin: 20px 0;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     table, th, td {
-      border: 1px solid black;
+      border: 1px solid #ddd;
     }
     th, td {
       padding: 10px;
       text-align: center;
     }
     th {
-      background-color: #f2f2f2;
+      background-color: #4CAF50;
+      color: white;
     }
-    input {
-      width: 60px;
-      text-align: center;
+    input[type="text"], input[type="number"] {
+      width: 90%;
+      padding: 5px;
+      font-size: 1rem;
     }
     .btn {
+      display: block;
+      width: 200px;
+      margin: 20px auto;
       padding: 10px 20px;
       font-size: 16px;
       background-color: #4CAF50;
       color: white;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
     }
     .btn:hover {
       background-color: #45a049;
     }
+    .description {
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
   <h1>Decision Matrix</h1>
+  <p>Use this decision matrix to evaluate options based on practicality, enjoyment, growth potential, and alignment with your goals. Each category is scored from 1-10.</p>
+  
   <table id="decision-matrix">
     <thead>
       <tr>
         <th>Option</th>
-        <th>Practicality (1-10)</th>
-        <th>Enjoyment (1-10)</th>
-        <th>Individual Growth (1-10)</th>
-        <th>Alignment with Goals (1-10)</th>
+        <th>Practicality<br><span class="description">(How useful is it?)</span></th>
+        <th>Enjoyment<br><span class="description">(How much will you enjoy it?)</span></th>
+        <th>Individual Growth<br><span class="description">(How will it help you grow?)</span></th>
+        <th>Alignment with Goals<br><span class="description">(How well does it fit your goals?)</span></th>
         <th>Total Score</th>
       </tr>
     </thead>
@@ -75,6 +109,7 @@
     </tbody>
   </table>
   <button class="btn" onclick="addRow()">Add Option</button>
+  
   <script>
     function calculateTotal(input) {
       const row = input.closest('tr');
